@@ -1,0 +1,280 @@
+<html itemscope itemtype="http://schema.org/Product" prefix="og: http://ogp.me/ns#" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!--#include virtual="title.html" -->
+    <script>
+        window.indexLoadedTime = window.performance.now();
+        console.log("(TIME) index.html loaded:\t", indexLoadedTime);
+    </script>
+    <script src="config.js?v=15"></script><!-- adapt to your needs, i.e. set hosts and bosh path -->
+    <script src="utils.js?v=1"></script>
+    <!--#include virtual="connection_optimization/connection_optimization.html" -->
+    <script src="connection_optimization/do_external_connect.js?v=1"></script>
+    <script src="interface_config.js?v=6"></script>
+    <script src="libs/lib-jitsi-meet.min.js?v=139"></script>
+    <script src="libs/app.bundle.min.js?v=139"></script>
+    <link rel="icon" type="image/png" href="/images/favicon.ico?v=1"/>
+    <meta property="og:title" content="Jitsi Meet"/>
+    <meta property="og:image" content="/images/jitsilogo.png?v=1"/>
+    <meta property="og:description" content="Join a WebRTC video conference powered by the Jitsi Videobridge"/>
+    <meta description="Join a WebRTC video conference powered by the Jitsi Videobridge"/>
+    <meta itemprop="name" content="Jitsi Meet"/>
+    <meta itemprop="description" content="Join a WebRTC video conference powered by the Jitsi Videobridge"/>
+    <meta itemprop="image" content="/images/jitsilogo.png?v=1"/>
+    <link rel="stylesheet" href="css/all.css"/>
+    <!--#include virtual="plugin.head.html" -->
+    <style>
+    body {
+    background-color: #4BC8E7;
+    padding: 0px;
+    margin: 0px;
+    }
+    .lostActivity-mainForm {
+    width: 100%;
+    padding-top: 7px;
+    position: absolute;
+    height: 100%;
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background-color: #fff;
+
+    }
+    .lostActivity-mainFormIn {
+    background-color: white;
+    padding: 40px 50px 50px 50px;
+    text-align: center;
+
+    width: 50%;
+    height: 150px;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+
+
+
+    }
+    .lostActivity-mainFormIn h1 {
+    font-family: "source-sans", sans-serif;
+    font-size: 30px;
+    color: #404455;
+    font-weight: 300;
+    margin: 0 0 0 0;
+
+    }
+    .lostActivity-mainFormIn h2 {
+    font-family: "source-sans", sans-serif;
+    font-size: 19px;
+    color: #858FA9;
+    font-weight: 300;
+    margin: 10px 0 0 0;
+    }
+    .lostActivity-submit {
+    padding: 15px 0px 0px 0px;
+    }
+    .btn-change-active {
+    background: #4BC8E7;
+    font-size: 18px;
+    font-weight: normal;
+    }
+
+    .btn-change {
+    border: none;
+    transition: all .3s ease-out;
+    text-align: center;
+    bottom: 0;
+    padding: 9px 25px 9px 25px;
+    margin: 20px 0 0 0;
+    color: #fff;
+    height: auto; !important
+    }
+
+    </style>
+
+
+
+    </head>
+<body>
+<div id="welcome_page">
+    <div class="lostActivity-mainForm">
+        <div class="lostActivity-mainFormIn">
+            <h1 class="ng-binding">You have left the room.</h1>
+            <div class="lostActivity-submit">
+                <button class="btn-change btn-change-active ng-binding" onclick="window.location.reload()">Enter the room again</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="videoconference_page">
+    <div style="position: relative;" id="header_container">
+        <div id="header">
+            <div id="notice" class="notice" style="display: none">
+                <span id="noticeText" class="noticeText"></span>
+            </div>
+                <span id="toolbar">
+                    <span id="authentication" class="authentication" style="display: none">
+                        <a class="button icon-avatar" id="toolbar_button_authentication" data-i18n="[content]toolbar.authenticate"></a>
+                        <ul class="loginmenu">
+                            <span class="loginmenuPadding"></span>
+                            <li id="toolbar_auth_identity"></li>
+                            <li id="toolbar_button_login">
+                                <a class="authButton" data-i18n="toolbar.login"></a>
+                            </li>
+                            <li id="toolbar_button_logout">
+                                <a class="authButton" data-i18n="toolbar.logout"></a>
+                            </li>
+                        </ul>
+                    </span>
+                    <a class="button icon-microphone" id="toolbar_button_mute" data-container="body" data-toggle="popover" data-placement="bottom" shortcut="mutePopover" data-i18n="[content]toolbar.mute" content="Mute / Unmute">
+                        <ul id="micMutedPopup" class="loginmenu">
+                            <li data-i18n="[html]toolbar.micMutedPopup"></li>
+                        </ul>
+                        <ul id="unableToUnmutePopup" class="loginmenu">
+                            <li data-i18n="[html]toolbar.unableToUnmutePopup"></li>
+                        </ul>
+                    </a>
+                    <a class="button icon-camera" id="toolbar_button_camera" data-container="body" data-toggle="popover" data-placement="bottom" shortcut="toggleVideoPopover" data-i18n="[content]toolbar.videomute" content="Start / stop camera"></a>
+                    <a class="button" id="toolbar_button_record" data-container="body" data-toggle="popover" data-placement="bottom" style="display: none"></a>
+                    <a class="button icon-security" id="toolbar_button_security" data-container="body" data-toggle="popover" data-placement="bottom" data-i18n="[content]toolbar.lock" content="Lock / unlock room"></a>
+                    <a class="button icon-link" id="toolbar_button_link" data-container="body" data-toggle="popover" data-placement="bottom" data-i18n="[content]toolbar.invite" content="Invite others"></a>
+                    <a class="button icon-chat" id="toolbar_button_chat" data-container="body" data-toggle="popover" shortcut="toggleChatPopover" data-placement="bottom" data-i18n="[content]toolbar.chat" content="Open / close chat">
+                        <span id="unreadMessages"></span>
+                    </a>
+                    <a class="button icon-share-doc" id="toolbar_button_etherpad" data-container="body" data-toggle="popover" data-placement="bottom" content="Shared document" data-i18n="[content]toolbar.etherpad"></a>
+                    <a class="button fa fa-share-alt-square" id="toolbar_button_sharedvideo" data-container="body" data-toggle="popover" data-placement="bottom" content="Share a YouTube video" data-i18n="[content]toolbar.sharedvideo" style="display: none">
+                        <ul id="sharedVideoMutedPopup" class="loginmenu">
+                            <li data-i18n="[html]toolbar.sharedVideoMutedPopup"></li>
+                        </ul>
+                    </a>
+                    <a class="button icon-share-desktop" id="toolbar_button_desktopsharing" data-container="body" data-toggle="popover" data-placement="bottom" shortcut="toggleDesktopSharingPopover" content="Share screen" data-i18n="[content]toolbar.sharescreen" style="display: none"></a>
+                    <a class="button icon-full-screen" id="toolbar_button_fullScreen" data-container="body" data-toggle="popover" data-placement="bottom" content="Enter / Exit Full Screen" data-i18n="[content]toolbar.fullscreen"></a>
+                    <a class="button icon-telephone" id="toolbar_button_sip" data-container="body" data-toggle="popover" data-placement="bottom" content="Call SIP number" data-i18n="[content]toolbar.sip" style="display: none"></a>
+                    <a class="button icon-dialpad" id="toolbar_button_dialpad" data-container="body" data-toggle="popover" data-placement="bottom" content="Open dialpad" data-i18n="[content]toolbar.dialpad" style="display: none"></a>
+                    <a class="button icon-settings" id="toolbar_button_settings" data-container="body" data-toggle="popover" data-placement="bottom" content="Settings" data-i18n="[content]toolbar.Settings"></a>
+                    <a class="button icon-hangup" id="toolbar_button_hangup" data-container="body" data-toggle="popover" data-placement="bottom" content="Hang Up" data-i18n="[content]toolbar.hangup"></a>
+                </span>
+        </div>
+        <div id="subject"></div>
+    </div>
+    <div id="videospace">
+
+        <div id="largeVideoContainer" class="videocontainer">
+            <div id="presentation"></div>
+            <div id="sharedVideo"><div id="sharedVideoIFrame"></div></div>
+            <div id="etherpad"></div>
+            <a target="_new"><div class="watermark leftwatermark"></div></a>
+            <a target="_new"><div class="watermark rightwatermark"></div></a>
+            <a class="poweredby" href="http://jitsi.org" target="_new">
+                <span data-i18n="poweredby"></span> jitsi.org
+            </a>
+            <div id="dominantSpeaker">
+                <img id="dominantSpeakerAvatar" src=""/>
+                <canvas id="dominantSpeakerAudioLevel"></canvas>
+            </div>
+            <div id="largeVideoWrapper">
+                <video id="largeVideo" muted="true" autoplay></video>
+            </div>
+            <span id="videoConnectionMessage"></span>
+            <span id="videoResolutionLabel">HD</span>
+            <span id="recordingLabel" class="centeredVideoLabel"></span>
+        </div>
+
+        <div id="remoteVideos">
+                <span id="localVideoContainer" class="videocontainer">
+                    <span id="localVideoWrapper">
+                        <!--<video id="localVideo" autoplay muted></video> - is now per stream generated -->
+                    </span>
+                    <audio id="localAudio" autoplay muted></audio>
+                    <span class="focusindicator"></span>
+                </span>
+            <audio id="userJoined" src="sounds/joined.wav" preload="auto"></audio>
+            <audio id="userLeft" src="sounds/left.wav" preload="auto"></audio>
+        </div>
+            <span id="bottomToolbar">
+                <span class="bottomToolbar_span">
+                    <a class="bottomToolbarButton" id="bottom_toolbar_chat" data-container="body" data-toggle="popover" shortcut="toggleChatPopover" data-placement="top" data-i18n="[content]bottomtoolbar.chat" content="Open / close chat">
+                        <i id="chatBottomButton" class="icon-chat-simple">
+                            <span id="bottomUnreadMessages"></span>
+                        </i>
+                    </a>
+                </span>
+                <div class="bottom_button_separator"></div>
+                <span class="bottomToolbar_span">
+                    <a class="bottomToolbarButton" id="bottom_toolbar_contact_list" data-container="body" data-toggle="popover" data-placement="top" id="contactlistpopover"  data-i18n="[content]bottomtoolbar.contactlist" content="Open / close contact list">
+                        <i id="contactListButton" class="icon-contactList">
+                            <span id="numberOfParticipants"></span>
+                        </i>
+                    </a>
+                </span>
+                <div class="bottom_button_separator"></div>
+                <span class="bottomToolbar_span">
+                    <a class="bottomToolbarButton" id="bottom_toolbar_film_strip" data-container="body" data-toggle="popover" shortcut="filmstripPopover" data-placement="top" data-i18n="[content]bottomtoolbar.filmstrip" content="Show / hide film strip">
+                        <i id="filmStripButton" class="icon-filmstrip"></i>
+                    </a>
+                </span>
+            </span>
+    </div>
+    <div id="chatspace" class="right-panel" style="display:none;">
+        <div id="nickname">
+            <span data-i18n="chat.nickname.title"></span>
+            <form>
+                <input type='text' id="nickinput" data-i18n="[placeholder]chat.nickname.popover" autofocus>
+            </form>
+        </div>
+
+        <div id="chatconversation"></div>
+        <audio id="chatNotification" src="sounds/incomingMessage.wav" preload="auto"></audio>
+        <textarea id="usermsg" data-i18n="[placeholder]chat.messagebox" autofocus></textarea>
+        <div id="smileysarea">
+            <div id="smileys" id="toggle_smileys">
+                <img src="images/smile.svg"/>
+            </div>
+        </div>
+    </div>
+    <div id="contactlist" class="right-panel" style="display:none;">
+        <div class="title">
+            <i class="icon-contactList"><span data-i18n="contactlist"></span></i>
+        </div>
+        <ul id="contacts"></ul>
+    </div>
+    <div id="settingsmenu" class="right-panel" style="display:none;">
+        <div class="icon-settings" data-i18n="settings.title"></div>
+        <img id="avatar" src="images/avatar2.png"/>
+        <div class="arrow-up"></div>
+        <input type="text" id="setDisplayName" data-i18n="[placeholder]settings.name" placeholder="Name">
+        <input type="text" id="setEmail" placeholder="E-Mail">
+        <select id="languages_selectbox"></select>
+        <div id = "startMutedOptions">
+            <label class = "startMutedLabel">
+                <input type="checkbox" id="startAudioMuted">
+                <span  data-i18n="settings.startAudioMuted"></span>
+            </label>
+            <label class = "startMutedLabel">
+                <input type="checkbox" id="startVideoMuted">
+                <span data-i18n="settings.startVideoMuted"></span>
+            </label>
+        </div>
+        <div id="devicesOptions">
+            <label className="devicesOptionsLabel">
+                <span data-i18n="settings.selectCamera"></span>
+                <select id="selectCamera"></select>
+            </label>
+            <label className="devicesOptionsLabel">
+                <span data-i18n="settings.selectMic"></span>
+                <select id="selectMic"></select>
+            </label>
+        </div>
+        <div id="followMeOptions">
+            <label class = "followMeLabel">
+                <input type="checkbox" id="followMeCheckBox">
+                <span  data-i18n="settings.followMe"></span>
+            </label>
+        </div>
+        <a id="downloadlog" data-container="body" data-toggle="popover" data-placement="right" data-i18n="[data-content]downloadlogs" ><i class="fa fa-cloud-download"></i></a>
+    </div>
+    <div id="feedbackButtonDiv">
+        <a id="feedbackButton" data-container="body" data-toggle="popover" data-placement="right" data-i18n="[data-content]feedback"><i class="fa fa-heart"></i></a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+docker run -it --name jitsi-meet -p 443:443 robertoandrade/jitsi-meet
