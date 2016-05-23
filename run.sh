@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export DEBIAN_FRONTEND=noninteractive
 
 export LOG=/var/log/jitsi/jvb.log
@@ -25,5 +27,7 @@ cd /etc/init.d/
 ./jitsi-videobridge restart && \
 ./jicofo restart && \
 ./nginx restart
+
+eyeos-service-ready-notify-cli &
 
 tail -f $LOG
