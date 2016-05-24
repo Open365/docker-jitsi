@@ -46,8 +46,8 @@ RUN \
 
 COPY run.sh /run.sh
 COPY index.html /usr/share/jitsi-meet/index.html
-COPY test.eyeos.com.conf /etc/nginx/sites-enabled/test.eyeos.com.conf
+COPY test.eyeos.com.conf /tmp/test.eyeos.com.conf
 CMD eyeos-run-server --serf /run.sh
-COPY config.js /etc/jitsi/meet/test.eyeos.com-config.js
-COPY app.bundle.min.js /usr/share/jitsi-meet/libs/app.bundle.min.js
+COPY config.js /tmp/test.eyeos.com-config.js
+COPY changes/app.bundle.min.js /usr/share/jitsi-meet/libs/app.bundle.min.js
 COPY dnsmasq.conf /etc/dnsmasq.d/

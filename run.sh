@@ -26,6 +26,14 @@ cd /etc/init.d/
 ./prosody restart && \
 ./jitsi-videobridge restart && \
 ./jicofo restart && \
+
+#replace custom configs
+mv /tmp/test.eyeos.com.conf /etc/nginx/sites-enabled/"$JITSI_HOSTNAME".conf && \
+sed -i "s/test.eyeos.com/$JITSI_HOSTNAME/g" /etc/nginx/sites-enabled/"$JITSI_HOSTNAME".conf && \
+
+mv /tmp/test.eyeos.com-config.js /etc/jitsi/meet/"$JITSI_HOSTNAME"-config.js && \
+sed -i "s/test.eyeos.com/$JITSI_HOSTNAME/g" /etc/jitsi/meet/"$JITSI_HOSTNAME"-config.js && \
+
 ./nginx restart
 
 eyeos-service-ready-notify-cli &
