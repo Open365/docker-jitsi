@@ -1,9 +1,0 @@
-CHANGES in app.bundle.min.js:
-
-1-Removed "video/" from roomname:
--roomName=getRoomName();roomName=roomName.replace("video/","");if(!roomName){var-]
-{+roomName=getRoomName();if(!roomName){var+}
-
-2-: Changed all ocurrences of location.path("/") for location.path("/video/").
-
-

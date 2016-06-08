@@ -1,1 +1,0 @@
-docker run -it --name jitsi-meet --net=host robertoandrade/jitsi-meet
