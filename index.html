@@ -40,25 +40,23 @@
     }
     .lostActivity-mainFormIn {
     background-color: white;
-    padding: 40px 50px 50px 50px;
     text-align: center;
 
-    width: 50%;
-    height: 150px;
-    overflow: auto;
+    width: 80%;
     margin: auto;
     position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
+    top: 0; left: 0; bottom: 0; right: 0; 
+    overflow: hidden;
 
 
 
     }
     .lostActivity-mainFormIn h1 {
     font-family: "source-sans", sans-serif;
-    font-size: 30px;
+    font-size: 35px;
     color: #404455;
     font-weight: 300;
-    margin: 0 0 0 0;
+    margin: 2em 0 0 0;
 
     }
     .lostActivity-mainFormIn h2 {
@@ -73,7 +71,7 @@
     }
     .btn-change-active {
     background: #4BC8E7;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: normal;
     }
 
@@ -88,6 +86,45 @@
     height: auto; !important
     }
 
+    #cloud-1, #cloud-2, #cloud-3, #cloud-4, #cloud-5, #cloud-6 {
+	background:url(images/cloud.svg) no-repeat center 100%;
+	position: absolute;
+	left: 0;
+    	top: 0;
+	right: 0;
+	bottom: 0;
+    }
+   
+    #cloud-1 {
+	transform: translate(-40%, -70%) scale(0.8,0.8);
+    }
+
+   #cloud-2 {
+   	transform: translate(60%, -90%) scale(1.2,1.2);
+   }
+
+   #cloud-3 {
+	transform: translate(30%, -70%) scale(0.4,0.4);
+   }
+
+   #cloud-4 {
+   	transform: translate(-10%, -70%) scale(0.5,0.5);
+   }
+
+  #cloud-5 {
+  	transform: translate(6%, -75%) scale(1.5,1.5);
+	background:url(images/cloud_blue.svg) no-repeat center 100%;
+  }
+
+  #cloud-6 {
+    transform: translate(50%, -30%) scale(0.5,0.5);
+  }
+  
+  #welcome_page {
+	max-width:800px;
+  }
+
+
     </style>
 
 
@@ -95,15 +132,22 @@
     </head>
 <body>
 <div id="welcome_page">
-    <div class="lostActivity-mainForm">
+   <div class="lostActivity-mainForm">
         <div class="lostActivity-mainFormIn">
+		    <div id="cloud-1"></div>
+            <div id="cloud-2"></div>
+            <div id="cloud-3"></div>
+            <div id="cloud-4"></div>
+            <div id="cloud-5"></div>
+            <div id="cloud-6"></div>
+
             <h1 class="ng-binding">You have left the room.</h1>
+            <h2>See you soon!</h2>
             <div class="lostActivity-submit">
-                <button class="btn-change btn-change-active ng-binding" onclick="window.location.reload()">Enter the room again</button>
+                <button class="btn-change btn-change-active ng-binding" onclick="window.location.href = window.frameElement.src">Enter the room again</button>
             </div>
         </div>
     </div>
-
 </div>
 <div id="videoconference_page">
     <div style="position: relative;" id="header_container">
@@ -132,16 +176,15 @@
                         <ul id="unableToUnmutePopup" class="loginmenu">
                             <li data-i18n="[html]toolbar.unableToUnmutePopup"></li>
                         </ul>
-                    </a>
+ </a>
                     <a class="button icon-camera" id="toolbar_button_camera" data-container="body" data-toggle="popover" data-placement="bottom" shortcut="toggleVideoPopover" data-i18n="[content]toolbar.videomute" content="Start / stop camera"></a>
                     <a class="button" id="toolbar_button_record" data-container="body" data-toggle="popover" data-placement="bottom" style="display: none"></a>
                     <a class="button icon-security" id="toolbar_button_security" data-container="body" data-toggle="popover" data-placement="bottom" data-i18n="[content]toolbar.lock" content="Lock / unlock room"></a>
                     <a class="button icon-link" id="toolbar_button_link" data-container="body" data-toggle="popover" data-placement="bottom" data-i18n="[content]toolbar.invite" content="Invite others"></a>
                     <a class="button icon-chat" id="toolbar_button_chat" data-container="body" data-toggle="popover" shortcut="toggleChatPopover" data-placement="bottom" data-i18n="[content]toolbar.chat" content="Open / close chat">
                         <span id="unreadMessages"></span>
-                    </a>
-                    <a class="button icon-share-doc" id="toolbar_button_etherpad" data-container="body" data-toggle="popover" data-placement="bottom" content="Shared document" data-i18n="[content]toolbar.etherpad"></a>
-                    <a class="button fa fa-share-alt-square" id="toolbar_button_sharedvideo" data-container="body" data-toggle="popover" data-placement="bottom" content="Share a YouTube video" data-i18n="[content]toolbar.sharedvideo" style="display: none">
+                    </a><a class="button icon-share-doc" id="toolbar_button_etherpad" data-container="body" data-toggle="popover" data-placement="bottom" content="Shared document" data-i18n="[content]toolbar.etherpad"></a>
+                 <a class="button fa fa-share-alt-square" id="toolbar_button_sharedvideo" data-container="body" data-toggle="popover" data-placement="bottom" content="Share a YouTube video" data-i18n="[content]toolbar.sharedvideo" style="display: none">
                         <ul id="sharedVideoMutedPopup" class="loginmenu">
                             <li data-i18n="[html]toolbar.sharedVideoMutedPopup"></li>
                         </ul>
