@@ -21,7 +21,9 @@ RUN apt-get update && \
 	rm -r /var/lib/apt/lists/* && rm -r /root/.npm && rm -r /tmp && rm -r /var/tmp
 
 COPY run.sh /run.sh
-COPY index.html /usr/share/jitsi-meet/index.html
+COPY assets/index.html /usr/share/jitsi-meet/index.html
+COPY assets/images/cloud.svg /usr/share/jitsi-meet/images/cloud.svg
+COPY assets/images/cloud_blue.svg /usr/share/jitsi-meet/images/cloud_blue.svg
 COPY test.eyeos.com.conf /tmp/test.eyeos.com.conf
 COPY config.js /tmp/test.eyeos.com-config.js
 COPY app.bundle.min.js /usr/share/jitsi-meet/libs/app.bundle.min.js
